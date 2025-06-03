@@ -1,7 +1,7 @@
 {
   "name": "Schnitzeljagd",
   "version": "0.0.1",
-  "author": "Ionic Framework",
+  "author": "Nils Utiger, Nico Marcuard, Riccardo Greco",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
@@ -10,7 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "SyncAndBuildThatShit": "npm run build && npx cap sync"
+    "SyncAndBuildThatShit": "npm run build && cap sync"
   },
   "private": true,
   "dependencies": {
