@@ -3,6 +3,6 @@
 <app-objective-state objectiveState="Noch x Meter bis zum Ziel"></app-objective-state>
 </ion-content>
 <ion-footer>
-  <app-progressbar doneObjectives="2" totalObjectives="6" ></app-progressbar>
-  <app-toolbar></app-toolbar>
+  <app-progressbar [doneObjectives]="objectiveNumber" totalObjectives="6"></app-progressbar>
+  <app-toolbar (nextTask)="nextTask()" [taskDone]="isTaskDone"></app-toolbar>
 </ion-footer>

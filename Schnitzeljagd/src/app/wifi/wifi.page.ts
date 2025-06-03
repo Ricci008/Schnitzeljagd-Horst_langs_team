@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {IonContent, IonFooter} from '@ionic/angular/standalone';
@@ -6,6 +6,7 @@ import {ObjectiveStateComponent} from "../objective-state/objective-state.compon
 import {ObjectiveTitleComponent} from "../objective-title/objective-title.component";
 import {ProgressbarComponent} from "../progressbar/progressbar.component";
 import {ToolbarComponent} from "../toolbar/toolbar.component";
+import {ScavangerHuntManagerService} from "../services/scavanger-hunt-manager.service";
 
 @Component({
   selector: 'app-wifi',
@@ -14,10 +15,23 @@ import {ToolbarComponent} from "../toolbar/toolbar.component";
   standalone: true,
     imports: [IonContent, CommonModule, FormsModule, IonFooter, ObjectiveStateComponent, ObjectiveTitleComponent, ProgressbarComponent, ToolbarComponent]
 })
-export class WifiPage  {
+export class WifiPage implements OnInit {
+  objectiveNumber: number = 0;
+  isTaskDone: boolean = false;
 
-  constructor() { }
+  constructor(private ScavangerHunt: ScavangerHuntManagerService) { }
 
+  ngOnInit() {
+    this.objectiveNumber = this.ScavangerHunt.getObjectiveNumber();
+    this.isTaskDone = true;
+  }
 
+  nextTask() {
+    this.ScavangerHunt.nextObjective();
+  }
 
+  markTaskDone() {
+    this.isTaskDone = true;
+    this.objectiveNumber =+ 1
+  }
 }

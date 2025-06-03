@@ -24,6 +24,12 @@ export class ScavangerHuntManagerService {
     return hunts.length > 0 ? hunts[hunts.length - 1].id : 0;
   }
 
+  getObjectiveNumber(): number {
+    const huntId = this.getCurrentHuntId();
+    const hunt = this.DataService.getHuntById(huntId);
+    return hunt ? hunt.timestamps.length : 0;
+  }
+
   startHunt(playerName: string): void {
     const newHuntId = this.DataService.getHunts().length + 1;
 

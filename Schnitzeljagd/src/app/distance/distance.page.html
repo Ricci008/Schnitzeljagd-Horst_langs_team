@@ -4,6 +4,6 @@
 </ion-content>
 
 <ion-footer>
-  <app-progressbar doneObjectives="1" totalObjectives="6" ></app-progressbar>
-  <app-toolbar></app-toolbar>
+  <app-progressbar [doneObjectives]="objectiveNumber" totalObjectives="6"></app-progressbar>
+  <app-toolbar (nextTask)="nextTask()" [taskDone]="isTaskDone"></app-toolbar>
 </ion-footer>

@@ -6,6 +6,7 @@ import {ObjectiveTitleComponent} from "../objective-title/objective-title.compon
 import {ObjectiveStateComponent} from "../objective-state/objective-state.component";
 import {ProgressbarComponent} from "../progressbar/progressbar.component";
 import {ToolbarComponent} from "../toolbar/toolbar.component";
+import {ScavangerHuntManagerService} from "../services/scavanger-hunt-manager.service";
 
 @Component({
   selector: 'app-qrcode',
@@ -15,10 +16,22 @@ import {ToolbarComponent} from "../toolbar/toolbar.component";
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ObjectiveTitleComponent, ObjectiveStateComponent, IonFooter, ProgressbarComponent, ToolbarComponent]
 })
 export class QrcodePage implements OnInit {
+  objectiveNumber: number = 0;
+  isTaskDone: boolean = false;
 
-  constructor() { }
+  constructor(private ScavangerHunt: ScavangerHuntManagerService) { }
 
   ngOnInit() {
+    this.objectiveNumber = this.ScavangerHunt.getObjectiveNumber();
+    this.isTaskDone = true;
   }
 
+  nextTask() {
+    this.ScavangerHunt.nextObjective();
+  }
+
+  markTaskDone() {
+    this.isTaskDone = true;
+    this.objectiveNumber =+ 1
+  }
 }

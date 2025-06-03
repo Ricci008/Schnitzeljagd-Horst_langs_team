@@ -6,6 +6,7 @@ import {ProgressbarComponent} from "../progressbar/progressbar.component";
 import {ToolbarComponent} from "../toolbar/toolbar.component";
 import {ObjectiveStateComponent} from "../objective-state/objective-state.component";
 import {ObjectiveTitleComponent} from "../objective-title/objective-title.component";
+import {ScavangerHuntManagerService} from "../services/scavanger-hunt-manager.service";
 
 @Component({
   selector: 'app-distance',
@@ -15,10 +16,22 @@ import {ObjectiveTitleComponent} from "../objective-title/objective-title.compon
   imports: [IonContent, CommonModule, FormsModule, ProgressbarComponent, ToolbarComponent, IonFooter, ObjectiveStateComponent, ObjectiveTitleComponent]
 })
 export class DistancePage implements OnInit {
+  objectiveNumber: number = 0;
+  isTaskDone: boolean = false;
 
-  constructor() { }
+  constructor(private ScavangerHunt: ScavangerHuntManagerService) { }
 
   ngOnInit() {
+    this.objectiveNumber = this.ScavangerHunt.getObjectiveNumber();
+    this.isTaskDone = true;
   }
 
+  nextTask() {
+    this.ScavangerHunt.nextObjective();
+  }
+
+  markTaskDone() {
+    this.isTaskDone = true;
+    this.objectiveNumber =+ 1
+  }
 }
