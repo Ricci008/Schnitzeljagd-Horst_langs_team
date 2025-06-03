@@ -1,0 +1,18 @@
+.progress-card {
+  padding: 16px;
+  border-radius: 16px;
+  transition: box-shadow 0.3s ease;
+
+  .card-subtitle {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  .custom-progress {
+    height: 12px;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: width 0.5s ease;
+  }
+}
