@@ -65,7 +65,7 @@ export class ScavangerHuntManagerService {
     }
   }
 
-  nextObjective(): void {
+  nextObjective(skip : boolean = false): void {
     const huntId = this.getCurrentHuntId();
 
     const hunt = this.DataService.getHuntById(huntId);
@@ -79,7 +79,9 @@ export class ScavangerHuntManagerService {
         endTime: ''
       });
 
-      hunt.points += 1;
+      if (!skip) {
+        hunt.points += 1;
+      }
       this.DataService.updateHunt(huntId, hunt);
 
       this.router.navigate([this.objectiveRoutes[nextObjective - 1]]);

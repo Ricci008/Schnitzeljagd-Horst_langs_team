@@ -23,11 +23,16 @@ export class GeolocationPage implements OnInit {
   constructor(private ScavangerHunt: ScavangerHuntManagerService) { }
 
   ngOnInit() {
-     this.objectiveNumber = this.ScavangerHunt.getObjectiveNumber();
+     this.objectiveNumber = this.ScavangerHunt.getObjectiveNumber() - 1;
   }
 
   nextTask() {
     this.ScavangerHunt.nextObjective();
+  }
+
+  skipTask() {
+    this.ScavangerHunt.nextObjective(true);
+    this.ScavangerHunt.endObjective();
   }
 
   markTaskDone() {
