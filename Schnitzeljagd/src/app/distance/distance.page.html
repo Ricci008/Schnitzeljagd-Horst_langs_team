@@ -1,13 +1,9 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>distance</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">distance</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="content" [fullscreen]="true">
+  <app-objective-title title="Distanz" description="Bewege dich zu Fuß über eine Strecke von X Metern. Hast du die Strecke geschafft, schaltest du die nächste Station frei!" ></app-objective-title>
+  <app-objective-state objectiveState="Du bist noch nicht die vorgegeben Distanz gelofen."></app-objective-state>
 </ion-content>
+
+<ion-footer>
+  <app-progressbar doneObjectives="1" totalObjectives="6" ></app-progressbar>
+  <app-toolbar></app-toolbar>
+</ion-footer>

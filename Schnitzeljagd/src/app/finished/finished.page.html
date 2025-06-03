@@ -1,13 +1,8 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>finished</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">finished</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="content" [fullscreen]="true">
+  <app-objective-title title="Geschafft!" description="Schnitzeljagt erfolgreich beendet" ></app-objective-title>
+  <app-objective-state objectiveState="Noch nicht Fertig."></app-objective-state>
 </ion-content>
+<ion-footer>
+  <app-progressbar doneObjectives="6" totalObjectives="6" ></app-progressbar>
+  <app-toolbar></app-toolbar>
+</ion-footer>
