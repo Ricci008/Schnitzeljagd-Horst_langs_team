@@ -1,13 +1,14 @@
 <ion-tab-bar>
-<ion-tab-button tab="exit" href="/tabs/leaderboard">
-  <ion-icon class="exit" aria-hidden="true" name="exit-outline"></ion-icon>
+  <ion-tab-button (click)="onExitClick()" tab="exit">
+    <ion-icon class="exit" aria-hidden="true" name="exit-outline"></ion-icon>
   </ion-tab-button>
+
   @if (taskDone) {
-    <ion-tab-button tab="next" >
+    <ion-tab-button (click)="onNextTaskClick()" tab="next">
       <ion-icon class="next" aria-hidden="true" name="chevron-forward-outline"></ion-icon>
     </ion-tab-button>
   } @else {
-    <ion-tab-button tab="skip" >
+    <ion-tab-button (click)="onSkipTaskClick()" tab="skip">
       <ion-icon class="skip" aria-hidden="true" name="play-skip-forward-outline"></ion-icon>
     </ion-tab-button>
   }
