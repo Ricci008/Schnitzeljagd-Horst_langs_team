@@ -19,7 +19,12 @@ export class ScavangerHuntManagerService {
 
   constructor(private DataService: ScavangerHuntDataService, private router: Router) {}
 
-  startHunt(playerName: string): number {
+  private getCurrentHuntId(): number {
+    const hunts = this.DataService.getHunts();
+    return hunts.length > 0 ? hunts[hunts.length - 1].id : 0;
+  }
+
+  startHunt(playerName: string): void {
     const newHuntId = this.DataService.getHunts().length + 1;
 
     const newHunt: ScavengerHunt = {
@@ -39,11 +44,12 @@ export class ScavangerHuntManagerService {
     };
 
     this.DataService.addHunt(newHunt);
-
-    return newHuntId;
+    this.router.navigate([this.objectiveRoutes[0]]);
   }
 
-  nextObjective(huntId: number): void {
+  nextObjective(): void {
+    const huntId = this.getCurrentHuntId();
+
     const hunt = this.DataService.getHuntById(huntId);
     if (hunt) {
       const lastTimestamp = hunt.timestamps[hunt.timestamps.length - 1];
@@ -63,7 +69,9 @@ export class ScavangerHuntManagerService {
     }
   }
 
-  completeHunt(huntId: number): void {
+  completeHunt(): void {
+    const huntId = this.getCurrentHuntId();
+
     const hunt = this.DataService.getHuntById(huntId);
     if (hunt) {
       const lastTimestamp = hunt.timestamps[hunt.timestamps.length - 1];

@@ -11,6 +11,8 @@ import {
 import {NameInputModalComponent} from "./name-input-modal.component";
 import {PermissionsModalComponent} from "./permissions-modal.component";
 
+import {ScavangerHuntManagerService} from "../services/scavanger-hunt-manager.service";
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -19,7 +21,7 @@ import {PermissionsModalComponent} from "./permissions-modal.component";
 })
 export class HomePage {
 
-  constructor(private modalCtrl: ModalController) {}
+  constructor(private modalCtrl: ModalController, private scavangerHunt: ScavangerHuntManagerService,) {}
 
   async startNewRun() {
     const nameModal = await this.modalCtrl.create({
@@ -33,6 +35,7 @@ export class HomePage {
         component: PermissionsModalComponent,
       });
       await permissionsModal.present();
+      this.scavangerHunt.startHunt(data?.name);
     }
   }
 }
