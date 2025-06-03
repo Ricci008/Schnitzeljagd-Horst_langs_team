@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ScavangerHuntDataService } from './scavanger-hunt-data.service';
 import { ScavengerHunt } from '../models/scavenger-hunt';
-import {toNumbers} from "@angular/compiler-cli/src/version_helpers";
 
 @Injectable({
   providedIn: 'root'
