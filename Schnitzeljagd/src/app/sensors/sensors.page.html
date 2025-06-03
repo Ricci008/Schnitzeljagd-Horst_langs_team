@@ -1,13 +1,8 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>sensors</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">sensors</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="content" [fullscreen]="true">
+  <app-objective-title title="Sensorik" description="Drehe dein Smartphone um 90 Grad. Sobald dein Gerät die Bewegung erkannt hat, ist dieser Schritt abgeschlossen und du kannst weitermachen! " ></app-objective-title>
+  <app-objective-state objectiveState="Drehung noch nicht erkannt"></app-objective-state>
 </ion-content>
+<ion-footer>
+  <app-progressbar doneObjectives="4" totalObjectives="6" ></app-progressbar>
+  <app-toolbar></app-toolbar>
+</ion-footer>
