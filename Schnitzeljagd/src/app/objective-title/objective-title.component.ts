@@ -7,7 +7,6 @@ import {IonCard, IonCardContent, IonCardHeader, IonTitle} from "@ionic/angular/s
   styleUrls: ['./objective-title.component.scss'],
   imports: [
     IonCard,
-    IonCardHeader,
     IonTitle,
     IonCardContent,
   ],

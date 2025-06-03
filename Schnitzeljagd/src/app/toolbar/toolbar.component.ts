@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {IonIcon, IonTabBar, IonTabButton} from "@ionic/angular/standalone";
 import {addIcons} from "ionicons";
 import {exitOutline, chevronForwardOutline, playSkipForwardOutline} from "ionicons/icons";
@@ -14,13 +14,11 @@ import {exitOutline, chevronForwardOutline, playSkipForwardOutline} from "ionico
   ]
 })
 export class ToolbarComponent  implements OnInit {
-  quest= true;
+  @Input() taskDone = false;
 
   constructor() {
     addIcons({exitOutline, chevronForwardOutline, playSkipForwardOutline});
   }
 
-  ngOnInit(): void {
-    }
-
+  ngOnInit(): void {}
 }

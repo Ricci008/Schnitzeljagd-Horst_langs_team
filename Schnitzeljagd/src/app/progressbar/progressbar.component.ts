@@ -12,6 +12,7 @@ import { IonCard, IonCardSubtitle, IonProgressBar } from '@ionic/angular/standal
     IonCardSubtitle
   ]
 })
+
 export class ProgressbarComponent implements OnChanges {
   @Input({transform: numberAttribute}) doneObjectives: number = 0;
   @Input({transform: numberAttribute}) totalObjectives: number = 1;
