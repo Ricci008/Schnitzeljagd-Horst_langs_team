@@ -1,3 +1,15 @@
-<p>
-  toolbar works!
-</p>
+<ion-tab-bar>
+<ion-tab-button tab="exit" href="/tabs/leaderboard">
+  <ion-icon class="exit" aria-hidden="true" name="exit-outline"></ion-icon>
+  </ion-tab-button>
+  @if (quest) {
+    <ion-tab-button tab="next" >
+      <ion-icon class="next" aria-hidden="true" name="chevron-forward-outline"></ion-icon>
+    </ion-tab-button>
+  } @else {
+    <ion-tab-button tab="skip" >
+      <ion-icon class="skip" aria-hidden="true" name="play-skip-forward-outline"></ion-icon>
+    </ion-tab-button>
+  }
+
+</ion-tab-bar>
