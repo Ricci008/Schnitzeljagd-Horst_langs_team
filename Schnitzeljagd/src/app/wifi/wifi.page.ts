@@ -23,7 +23,6 @@ export class WifiPage implements OnInit {
 
   ngOnInit() {
     this.objectiveNumber = this.ScavangerHunt.getObjectiveNumber();
-    this.isTaskDone = true;
   }
 
   nextTask() {

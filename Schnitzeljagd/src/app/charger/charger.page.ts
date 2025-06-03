@@ -23,7 +23,6 @@ export class ChargerPage implements OnInit {
 
   ngOnInit() {
     this.objectiveNumber = this.ScavangerHunt.getObjectiveNumber();
-    this.isTaskDone = true;
   }
 
   nextTask() {

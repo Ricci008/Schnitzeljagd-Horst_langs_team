@@ -24,7 +24,6 @@ export class GeolocationPage implements OnInit {
 
   ngOnInit() {
      this.objectiveNumber = this.ScavangerHunt.getObjectiveNumber();
-     this.isTaskDone = true;
   }
 
   nextTask() {
