@@ -53,13 +53,24 @@ export class ScavangerHuntManagerService {
     this.router.navigate([this.objectiveRoutes[0]]);
   }
 
-  nextObjective(): void {
+  endObjective(): void {
     const huntId = this.getCurrentHuntId();
 
     const hunt = this.DataService.getHuntById(huntId);
     if (hunt) {
       const lastTimestamp = hunt.timestamps[hunt.timestamps.length - 1];
       lastTimestamp.endTime = new Date().toISOString();
+
+      this.DataService.updateHunt(huntId, hunt);
+    }
+  }
+
+  nextObjective(): void {
+    const huntId = this.getCurrentHuntId();
+
+    const hunt = this.DataService.getHuntById(huntId);
+    if (hunt) {
+      const lastTimestamp = hunt.timestamps[hunt.timestamps.length - 1];
 
       const nextObjective = lastTimestamp.objective + 1;
       hunt.timestamps.push({
