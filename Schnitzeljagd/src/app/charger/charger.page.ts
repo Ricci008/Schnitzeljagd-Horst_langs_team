@@ -31,6 +31,7 @@ export class ChargerPage implements OnInit {
 
   markTaskDone() {
     this.isTaskDone = true;
+    this.ScavangerHunt.endObjective();
     this.objectiveNumber =+ 1
   }
 }

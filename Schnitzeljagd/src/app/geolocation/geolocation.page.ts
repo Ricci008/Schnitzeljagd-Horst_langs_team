@@ -32,6 +32,7 @@ export class GeolocationPage implements OnInit {
 
   markTaskDone() {
     this.isTaskDone = true;
+    this.ScavangerHunt.endObjective();
     this.objectiveNumber =+ 1
   }
 }
