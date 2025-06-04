@@ -16,7 +16,7 @@
 <ion-content [fullscreen]="true">
 
   <ion-card color="transparent">
-    <ion-button expand="block" (click)="startNewRun()">Neue Schnitzeljagd</ion-button>
+    <ion-button expand="block" (click)="nameModal.present()" id="start-run">Neue Schnitzeljagd</ion-button>
   </ion-card>
 
   <ion-card>
@@ -40,5 +40,72 @@
       <ion-item>Lorem Ipsum</ion-item>
     </ion-list>
   </ion-card>
-
+  <ion-modal #nameModal>
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Spielername</ion-title>
+          <ion-buttons slot="start">
+            <ion-button (click)="nameModal.dismiss()">Abbrechen</ion-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button
+              [disabled]="!playerName"
+              (click)="openPermissionModal()"
+            >Weiter</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <p class="ion-padding-horizontal">Gib deinen Namen ein um fortzufahren.</p>
+        <ion-item>
+          <ion-input
+            #playerNameInput
+            id="player-name"
+            placeholder="Dein Name"
+            (ionInput)="onNameInput($event)"
+            [value]="playerName"
+          ></ion-input>
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  <ion-modal #permissionModal>
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Berechtigungen</ion-title>
+          <ion-buttons slot="start">
+            <ion-button (click)="permissionModal.dismiss()">Abbrechen</ion-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button
+              [disabled]="!canStart()"
+            >Starten</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <p class="ion-padding-horizontal">Um die Schnitzeljagd zu starten, brauchen wir noch einige Berechtigungen.</p>
+        <ion-item>
+          <ion-checkbox
+            id="camera-permission"
+            [checked]="cameraPermission"
+            (ionChange)="onCameraPermissionChange($event)"
+          >
+            <div class="ion-text-wrap">Kamera Berechtigung</div>
+          </ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-checkbox
+            id="location-permission"
+            [checked]="locationPermission"
+            (ionChange)="onLocationPermissionChange($event)"
+          >
+            <div class="ion-text-wrap">Standort Berechtigung</div>
+          </ion-checkbox>
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
