@@ -92,11 +92,15 @@ export class ScavangerHuntManagerService {
 
       this.DataService.updateHunt(huntId, hunt);
 
-      this.router.navigate([this.objectiveRoutes[nextObjective - 1]]);
+      if (nextObjective > this.objectiveRoutes.length) {
+        this.completeHunt();
+      } else {
+        this.router.navigate([this.objectiveRoutes[nextObjective - 1]]);
+      }
     }
   }
 
-  completeHunt(): void {
+  private completeHunt(): void {
     const huntId = this.getCurrentHuntId();
 
     const hunt = this.DataService.getHuntById(huntId);
