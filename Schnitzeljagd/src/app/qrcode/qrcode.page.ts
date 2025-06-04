@@ -51,7 +51,7 @@ export class QrcodePage implements OnInit {
   validQRCode = 'M335@ICT-BZ';
 
   onCodeResult(result: string) {
-    if (result === this.validQRCode) {
+    if (result === this.validQRCode && !this.isTaskDone) {
       this.markTaskDone();
     }
   }
