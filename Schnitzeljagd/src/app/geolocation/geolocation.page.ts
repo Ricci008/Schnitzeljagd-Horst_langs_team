@@ -64,8 +64,10 @@ export class GeolocationPage implements OnInit, OnDestroy {
   }
 
   async startLocationCheck() {
-    this.intervalId = setInterval(async () => {
-      const position = await Geolocation.getCurrentPosition();
+    const watchId = await Geolocation.watchPosition({}, (position, err) => {
+      if (err || !position) {
+        return;
+      }
       const currentCoords = {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude
@@ -77,7 +79,8 @@ export class GeolocationPage implements OnInit, OnDestroy {
           this.markTaskDone();
         }
       });
-    }, 5000);
+    });
+    this.intervalId = watchId;
   }
 
   nextTask() {
