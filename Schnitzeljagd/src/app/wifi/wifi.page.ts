@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, NgZone} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {IonContent, IonFooter} from '@ionic/angular/standalone';
@@ -21,16 +21,21 @@ export class WifiPage implements OnInit {
   objectiveNumber: number = 0;
   isTaskDone: boolean = false;
 
-  constructor(private ScavangerHunt: ScavangerHuntManagerService) { }
+  constructor(
+    private ScavangerHunt: ScavangerHuntManagerService,
+    private ngZone: NgZone
+  ) { }
 
   ngOnInit() {
     this.objectiveNumber = this.ScavangerHunt.getObjectiveNumber() - 1;
 
     Network.addListener('networkStatusChange', status => {
-      if (status.connected) {
-        this.markTaskDone();
-      }
-    })
+      this.ngZone.run(() => {
+        if (status.connected && status.connectionType === 'wifi' && !this.isTaskDone) {
+          this.markTaskDone();
+        }
+      });
+    });
   }
 
   nextTask() {
@@ -43,9 +48,11 @@ export class WifiPage implements OnInit {
   }
 
   markTaskDone() {
-    this.isTaskDone = true;
-    this.ScavangerHunt.endObjective();
-    this.objectiveNumber =+ 1
+    this.ngZone.run(() => {
+      this.isTaskDone = true;
+      this.ScavangerHunt.endObjective();
+      this.objectiveNumber += 1;
+    });
   }
 
   exitHunt() {
