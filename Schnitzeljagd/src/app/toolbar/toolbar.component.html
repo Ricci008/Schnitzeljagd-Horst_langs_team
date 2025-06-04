@@ -1,5 +1,5 @@
 <ion-tab-bar>
-  <ion-tab-button (click)="onExitClick()" tab="exit">
+  <ion-tab-button tab="exit" (click)="openActionSheet()">
     <ion-icon class="exit" aria-hidden="true" name="exit-outline"></ion-icon>
   </ion-tab-button>
 
@@ -13,3 +13,4 @@
     </ion-tab-button>
   }
 </ion-tab-bar>
+<ion-action-sheet header="Möchtest du die Schnitzeljagd wirklich verlassen ?" [buttons]="actionSheetButtons" (didDismiss)="handleResult($event)" [isOpen]="isActionSheetOpen"></ion-action-sheet>
