@@ -38,8 +38,8 @@ import {FormsModule} from "@angular/forms";
         <ion-input [(ngModel)]="name" placeholder="dein Name..."></ion-input>
       </ion-item>
       <ion-footer>
-        <ion-button expand="block" (click)="cancel()">Abbrechen</ion-button>
         <ion-button expand="block" [disabled]="!name" (click)="next()">Weiter</ion-button>
+        <ion-button expand="block" (click)="cancel()">Abbrechen</ion-button>
       </ion-footer>
     </ion-content>
   `
