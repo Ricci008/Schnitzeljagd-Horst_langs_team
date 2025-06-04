@@ -23,10 +23,16 @@
     <ion-card-header>
       <ion-card-title>Top Durchläufe</ion-card-title>
     </ion-card-header>
-    <ion-list > <!--Todo @for einbauen-->
-      <ion-item>Lorem Ipsum</ion-item>
-      <ion-item>Lorem Ipsum</ion-item>
-      <ion-item>Lorem Ipsum</ion-item>
+    <ion-list >
+      @for (hunt of topHunts; track hunt.id){
+      <ion-item>
+        <ion-label>
+         {{ hunt.playerName }} /
+         {{hunt.date | date: 'dd.MM.yyyy'}} /
+         {{hunt.points}} Punkte
+      </ion-label>
+      </ion-item>
+    }
     </ion-list>
   </ion-card>
 
@@ -34,10 +40,16 @@
     <ion-card-header>
       <ion-card-title>Letzte Durchläufe</ion-card-title>
     </ion-card-header>
-    <ion-list > <!--Todo @for einbauen-->
-      <ion-item>Lorem Ipsum</ion-item>
-      <ion-item>Lorem Ipsum</ion-item>
-      <ion-item>Lorem Ipsum</ion-item>
+    <ion-list >
+      @for (hunt of recentHunts; track hunt.id){
+        <ion-item>
+          <ion-label>
+            {{ hunt.playerName }} /
+            {{hunt.date | date: 'dd.MM.yyyy'}} /
+            {{hunt.points}} Punkte
+          </ion-label>
+        </ion-item>
+      }
     </ion-list>
   </ion-card>
   <ion-modal #nameModal>
