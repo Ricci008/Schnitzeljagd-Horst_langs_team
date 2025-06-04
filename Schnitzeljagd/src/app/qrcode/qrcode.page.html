@@ -1,5 +1,12 @@
 <ion-content class="content" [fullscreen]="true">
   <app-objective-title title="QR Codes" description="Scanne einen QR-Code mit der Kamera deines Handys. Nach dem erfolgreichen Scan wird die nächste Aufgabe freigeschaltet! " ></app-objective-title>
+
+  <zxing-scanner
+    [formats]="formatsEnabled"
+    (scanSuccess)="onCodeResult($event)">
+  </zxing-scanner>
+
+
 @if (isTaskDone) {
   <app-objective-state objectiveState="Erfolgreich Gescannt! Beginne mit der nächsten Aufgabe"></app-objective-state>
 } @else {
