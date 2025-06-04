@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {IonIcon, IonTabBar, IonTabButton} from "@ionic/angular/standalone";
+import {IonActionSheet, IonIcon, IonTabBar, IonTabButton} from "@ionic/angular/standalone";
 import {addIcons} from "ionicons";
 import {exitOutline, chevronForwardOutline, playSkipForwardOutline} from "ionicons/icons";
 
@@ -10,7 +10,8 @@ import {exitOutline, chevronForwardOutline, playSkipForwardOutline} from "ionico
   imports: [
     IonTabBar,
     IonTabButton,
-    IonIcon
+    IonIcon,
+    IonActionSheet
   ]
 })
 export class ToolbarComponent  implements OnInit {
@@ -26,6 +27,25 @@ export class ToolbarComponent  implements OnInit {
 
   ngOnInit(): void {}
 
+  public actionSheetButtons = [
+    {
+      text: 'Verlassen',
+      role: 'destructive',
+      data: {
+        action: 'exit',
+      },
+    },
+    {
+      text: 'Abbrechen',
+      role: 'cancel',
+      data: {
+        action: 'cancel',
+      },
+    },
+  ];
+
+  isActionSheetOpen: boolean = false;
+
   onExitClick() {
     this.exit.emit();
   }
@@ -36,5 +56,16 @@ export class ToolbarComponent  implements OnInit {
 
   onSkipTaskClick() {
     this.skipTask.emit();
+  }
+
+  handleResult($event: any) {
+    this.isActionSheetOpen = false;
+    if ($event.detail.data.action === 'exit') {
+      this.onExitClick();
+    }
+  }
+
+  openActionSheet() {
+    this.isActionSheetOpen = true;
   }
 }

@@ -40,4 +40,8 @@ export class GeolocationPage implements OnInit {
     this.ScavangerHunt.endObjective();
     this.objectiveNumber =+ 1
   }
+
+  exitHunt() {
+    this.ScavangerHunt.exitHunt();
+  }
 }

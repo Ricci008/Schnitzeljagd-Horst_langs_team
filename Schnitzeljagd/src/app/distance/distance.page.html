@@ -2,8 +2,7 @@
   <app-objective-title title="Distanz" description="Bewege dich zu Fuß über eine Strecke von X Metern. Hast du die Strecke geschafft, schaltest du die nächste Station frei!" ></app-objective-title>
   <app-objective-state objectiveState="Du bist noch nicht die vorgegeben Distanz gelofen."></app-objective-state>
 </ion-content>
-
 <ion-footer>
   <app-progressbar [doneObjectives]="objectiveNumber" totalObjectives="6"></app-progressbar>
-  <app-toolbar (nextTask)="nextTask()" (skipTask)="skipTask()" [taskDone]="isTaskDone"></app-toolbar>
+  <app-toolbar (nextTask)="nextTask()" (skipTask)="skipTask()" (exit)="exitHunt()" [taskDone]="isTaskDone"></app-toolbar>
 </ion-footer>
