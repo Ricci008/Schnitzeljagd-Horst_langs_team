@@ -1,5 +1,13 @@
 ion-button {
-  margin: 12px 8px;
+  width: 100%;
+  max-width: 200px;
+  flex: 1 1 0;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 ion-list {

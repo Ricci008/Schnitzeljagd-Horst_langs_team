@@ -11,16 +11,20 @@
     <ion-toolbar>
       <ion-title size="large">Bestenliste</ion-title>
     </ion-toolbar>
-    <ion-button [color]="mode === 'top' ? 'primary' : 'medium'" (click)="setMode('top')">Top</ion-button>
-    <ion-button [color]="mode === 'latest' ? 'primary' : 'medium'" (click)="setMode('latest')">Neuste</ion-button>
+    <ion-card color="transparent">
+    <div class="button-group">
+      <ion-button [color]="mode === 'top' ? 'primary' : 'medium'" (click)="setMode('top')">Top</ion-button>
+      <ion-button [color]="mode === 'latest' ? 'primary' : 'medium'" (click)="setMode('latest')">Neuste</ion-button>
+    </div>
+    </ion-card>
     </ion-header>
 <ion-list>
   @for (hunt of filteredHunts; track hunt.id) {
     <ion-item>
       <ion-label>
-        <h2>{{ hunt.playerName }}</h2>
-        <p>{{ hunt.date }}</p>
-        <p>{{ hunt.points}} Punkte</p>
+        {{ hunt.playerName }} /
+        {{hunt.date | date: 'dd.MM.yyyy'}} /
+        {{hunt.points}} Punkte
       </ion-label>
     </ion-item>
   }

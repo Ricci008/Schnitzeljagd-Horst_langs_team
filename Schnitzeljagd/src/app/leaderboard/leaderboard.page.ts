@@ -7,17 +7,18 @@ import {
   IonButton,
   IonList,
   IonLabel,
-  IonItem
+  IonItem, IonCard
 } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { ScavangerHuntDataService } from '../services/scavanger-hunt-data.service';
 import { ScavengerHunt } from '../models/scavenger-hunt';
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-leaderboard',
   templateUrl: 'leaderboard.html',
   styleUrls: ['leaderbaord.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, IonButton, IonList, IonLabel, IonItem]
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, IonButton, IonList, IonLabel, IonItem, DatePipe, IonCard]
 })
 export class LeaderboardPage {
   mode: 'top' | 'latest' = 'top';
