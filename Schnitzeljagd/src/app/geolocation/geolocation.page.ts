@@ -44,7 +44,7 @@ export function haversineDistance(
 export class GeolocationPage implements OnInit, OnDestroy {
   objectiveNumber: number = 0;
   isTaskDone: boolean = false;
-  distanceToTarget: number | null = null;
+  distanceToTarget: number = 0;
   private intervalId: any;
 
   targetCoords = { latitude: 47.02758723687247, longitude: 8.300906172755733  };
