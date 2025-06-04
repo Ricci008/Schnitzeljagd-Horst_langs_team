@@ -47,8 +47,8 @@ import {FormsModule} from "@angular/forms";
       </ion-item>
 
       <ion-footer>
-        <ion-button expand="block" (click)="cancel()">Abbrechen</ion-button>
         <ion-button expand="block" [disabled]="!isValid()" (click)="start()">Starten</ion-button>
+        <ion-button expand="block" (click)="cancel()">Abbrechen</ion-button>
       </ion-footer>
     </ion-content>
   `
