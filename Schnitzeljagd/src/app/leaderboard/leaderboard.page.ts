@@ -34,7 +34,7 @@ export class LeaderboardPage {
 
   get filteredHunts(): ScavengerHunt[] {
     if (this.mode === 'top') {
-      return [...this.hunts].sort((a, b) => a.totalTime - b.totalTime);
+      return [...this.hunts].sort((a, b) => b.points - a.points);
     } else {
       return [...this.hunts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     }
