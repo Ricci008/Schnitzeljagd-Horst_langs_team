@@ -50,7 +50,6 @@ export class ChargerPage implements OnInit {
   startChargerStatePolling() {
     interval(300).subscribe(() => {
       Device.getBatteryInfo().then(batteryInfo => {
-        console.log(this.objectiveNumber);
         if (batteryInfo.isCharging && !this.isTaskDone) {
           this.markTaskDone();
         }
