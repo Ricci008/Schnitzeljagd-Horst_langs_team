@@ -21,7 +21,10 @@ import {ScavangerHuntManagerService} from "../services/scavanger-hunt-manager.se
 })
 export class HomePage {
 
-  constructor(private modalCtrl: ModalController, private scavangerHunt: ScavangerHuntManagerService,) {}
+  constructor(
+    private modalCtrl: ModalController,
+    private scavangerHunt: ScavangerHuntManagerService,
+    ) {}
 
   async startNewRun() {
     const nameModal = await this.modalCtrl.create({

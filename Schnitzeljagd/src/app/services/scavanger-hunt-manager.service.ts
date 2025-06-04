@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ScavangerHuntDataService } from './scavanger-hunt-data.service';
 import { ScavengerHunt } from '../models/scavenger-hunt';
+import {Haptics, NotificationType} from '@capacitor/haptics';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,7 @@ export class ScavangerHuntManagerService {
 
     this.DataService.addHunt(newHunt);
     this.router.navigate([this.objectiveRoutes[0]]);
+    Haptics.notification({ type: NotificationType.Success });
   }
 
   endObjective(): void {
@@ -81,7 +83,11 @@ export class ScavangerHuntManagerService {
 
       if (!skip) {
         hunt.points += 1;
+        Haptics.notification({ type: NotificationType.Success });
+      } else {
+        Haptics.notification({ type: NotificationType.Warning });
       }
+
       this.DataService.updateHunt(huntId, hunt);
 
       this.router.navigate([this.objectiveRoutes[nextObjective - 1]]);
@@ -106,7 +112,15 @@ export class ScavangerHuntManagerService {
         }
       }
 
+      Haptics.notification({ type: NotificationType.Success });
       this.DataService.updateHunt(huntId, hunt);
     }
+  }
+
+  exitHunt(): void {
+    const huntId = this.getCurrentHuntId();
+    this.DataService.deleteHunt(huntId)
+    Haptics.notification({ type: NotificationType.Error });
+    this.router.navigate(['/tabs/leaderboard']);
   }
 }
