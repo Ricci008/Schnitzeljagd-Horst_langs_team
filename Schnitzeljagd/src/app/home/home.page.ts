@@ -15,6 +15,7 @@ import { Camera } from '@capacitor/camera';
 import {ScavengerHunt} from "../models/scavenger-hunt";
 import {DatePipe} from "@angular/common";
 import {ScavangerHuntDataService} from "../services/scavanger-hunt-data.service";
+import {ScavangerHuntManagerService} from "../services/scavanger-hunt-manager.service";
 
 @Component({
   selector: 'app-home',
@@ -33,7 +34,8 @@ export class HomePage {
   @ViewChild('playerNameInput', { static: false }) playerNameInput!: IonInput;
 
   constructor(
-    private scavangerHuntDataService: ScavangerHuntDataService
+    private scavangerHuntDataService: ScavangerHuntDataService,
+    private ScavangerHunt: ScavangerHuntManagerService
   ) {
     this.scavangerHuntDataService.seedTestData();
   }
@@ -87,5 +89,11 @@ export class HomePage {
 
   canStart(): boolean {
     return this.cameraPermission && this.locationPermission;
+  }
+
+  startHunt() {
+    if (this.playerName && this.canStart()) {
+      this.ScavangerHunt.startHunt(this.playerName);
+    }
   }
 }
