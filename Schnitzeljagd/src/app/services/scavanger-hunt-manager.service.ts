@@ -20,7 +20,7 @@ export class ScavangerHuntManagerService {
 
   constructor(private DataService: ScavangerHuntDataService, private router: Router) {}
 
-  private getCurrentHuntId(): number {
+  getCurrentHuntId(): number {
     const hunts = this.DataService.getHunts();
     return hunts.length > 0 ? hunts[hunts.length - 1].id : 0;
   }
@@ -86,6 +86,7 @@ export class ScavangerHuntManagerService {
         hunt.points += 1;
         Haptics.notification({ type: NotificationType.Success });
       } else {
+        hunt.reductions += 1;
         Haptics.notification({ type: NotificationType.Warning });
       }
 
@@ -115,6 +116,7 @@ export class ScavangerHuntManagerService {
 
       Haptics.notification({ type: NotificationType.Success });
       this.DataService.updateHunt(huntId, hunt);
+      this.router.navigate(['/finished'])
     }
   }
 
