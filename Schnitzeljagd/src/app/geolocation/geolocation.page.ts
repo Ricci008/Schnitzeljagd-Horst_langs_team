@@ -64,7 +64,11 @@ export class GeolocationPage implements OnInit, OnDestroy {
   }
 
   async startLocationCheck() {
-    const watchId = await Geolocation.watchPosition({}, (position, err) => {
+    const watchId = await Geolocation.watchPosition({
+      enableHighAccuracy: true,
+      timeout: 1000,
+      maximumAge: 0
+    }, (position, err) => {
       if (err || !position) {
         return;
       }
@@ -75,6 +79,7 @@ export class GeolocationPage implements OnInit, OnDestroy {
       const distance = haversineDistance(currentCoords, this.targetCoords);
       this.ngZone.run(() => {
         this.distanceToTarget = distance;
+        console.log(distance)
         if (distance < 10 && !this.isTaskDone) {
           this.markTaskDone();
         }

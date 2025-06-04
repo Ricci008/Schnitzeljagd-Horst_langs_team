@@ -38,7 +38,8 @@ export class DistancePage implements OnInit {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude
       };
-      this.watchId = await Geolocation.watchPosition({ enableHighAccuracy: true }, (position, error) => {
+      this.watchId = await Geolocation.watchPosition({ enableHighAccuracy: true, timeout: 1000,
+        maximumAge: 0 }, (position, error) => {
         if (error || !position || !this.startCoords) return;
 
         const newCoords = {
