@@ -85,12 +85,12 @@ export class DistancePage implements OnInit {
   }
 
   nextTask() {
-    this.ScavangerHunt.nextObjective();
+    this.ScavangerHunt.endObjective();
+    this.ScavangerHunt.completeHunt();
   }
 
   skipTask() {
-    this.ScavangerHunt.nextObjective(true);
-    this.ScavangerHunt.endObjective();
+    this.ScavangerHunt.completeHunt();
   }
 
   markTaskDone() {
