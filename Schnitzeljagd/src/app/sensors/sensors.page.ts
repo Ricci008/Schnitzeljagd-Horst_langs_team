@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {IonContent, IonFooter, IonHeader, IonTitle, IonToolbar} from '@ionic/angular/standalone';
@@ -15,14 +15,28 @@ import {ScavangerHuntManagerService} from "../services/scavanger-hunt-manager.se
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ObjectiveTitleComponent, ObjectiveStateComponent, IonFooter, ProgressbarComponent, ToolbarComponent]
 })
-export class SensorsPage implements OnInit {
+export class SensorsPage implements OnInit, OnDestroy {
   objectiveNumber: number = 0;
   isTaskDone: boolean = false;
+  private orientationHandler: any;
 
-  constructor(private ScavangerHunt: ScavangerHuntManagerService) { }
+  constructor(
+    private ScavangerHunt: ScavangerHuntManagerService,
+    private ngZone: NgZone
+  ) { }
 
   ngOnInit() {
     this.objectiveNumber = this.ScavangerHunt.getObjectiveNumber() - 1;
+    this.orientationHandler = (event: DeviceOrientationEvent) => {
+      if ((Math.abs(event.beta ?? 0) > 80 && Math.abs(event.beta ?? 0) < 100) && !this.isTaskDone) {
+        this.ngZone.run(() => this.markTaskDone());
+      }
+    };
+    window.addEventListener('deviceorientation', this.orientationHandler);
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('deviceorientation', this.orientationHandler);
   }
 
   nextTask() {
@@ -37,7 +51,7 @@ export class SensorsPage implements OnInit {
   markTaskDone() {
     this.isTaskDone = true;
     this.ScavangerHunt.endObjective();
-    this.objectiveNumber =+ 1
+    this.objectiveNumber =+ 1;
   }
 
   exitHunt() {
