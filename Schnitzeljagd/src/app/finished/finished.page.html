@@ -1,8 +1,8 @@
 <ion-content class="content" [fullscreen]="true">
 <app-objective-title title="Geschafft!" description="Du hast alle Aufgaben erfolgreich abgeschlossen. Herzlichen Glückwunsch zur bestandenen Schnitzeljagd!" ></app-objective-title>
-  <app-objective-state objectiveState="Medalien - {{points}}"></app-objective-state>
-  <app-objective-state objectiveState="Kartoffeln - {{skipedTasks}}"></app-objective-state>
-  <app-objective-state objectiveState="Zeit - {{usedTime}}"></app-objective-state>
+  <app-objective-state objectiveState="{{points}} Punkte"></app-objective-state>
+  <app-objective-state objectiveState="{{skipedTasks}} Abzüge"></app-objective-state>
+  <app-objective-state objectiveState="Zeit: {{usedTime}}"></app-objective-state>
 </ion-content>
 <ion-footer>
   <app-progressbar doneObjectives="6" totalObjectives="6" ></app-progressbar>
