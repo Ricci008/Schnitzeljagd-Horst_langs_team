@@ -93,6 +93,7 @@ export class HomePage {
 
   startHunt() {
     if (this.playerName && this.canStart()) {
+      this.permissionModal.dismiss();
       this.ScavangerHunt.startHunt(this.playerName);
     }
   }
