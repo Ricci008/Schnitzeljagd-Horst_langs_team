@@ -6,19 +6,21 @@ import {
   IonContent,
   IonButton,
   IonCard,
-  IonCardHeader, IonCardTitle, IonList, ModalController, IonItem, IonModal, IonButtons, IonCheckbox, IonInput
+  IonCardHeader, IonCardTitle, IonList, IonItem, IonModal, IonButtons, IonCheckbox, IonInput, IonLabel
 } from '@ionic/angular/standalone';
 
-import {ScavangerHuntManagerService} from "../services/scavanger-hunt-manager.service";
 
 import { Geolocation } from '@capacitor/geolocation';
 import { Camera } from '@capacitor/camera';
+import {ScavengerHunt} from "../models/scavenger-hunt";
+import {DatePipe} from "@angular/common";
+import {ScavangerHuntDataService} from "../services/scavanger-hunt-data.service";
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonCard, IonCardHeader, IonCardTitle, IonList, IonItem, IonModal, IonButtons, IonCheckbox, IonInput],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonCard, IonCardHeader, IonCardTitle, IonList, IonItem, IonModal, IonButtons, IonCheckbox, IonInput, IonLabel, DatePipe],
 })
 export class HomePage {
   playerName: string = '';
@@ -30,7 +32,21 @@ export class HomePage {
   @ViewChild('permissionModal', { static: false }) permissionModal!: IonModal;
   @ViewChild('playerNameInput', { static: false }) playerNameInput!: IonInput;
 
-  constructor() {}
+  constructor(
+    private scavangerHuntDataService: ScavangerHuntDataService
+  ) {
+    this.scavangerHuntDataService.seedTestData();
+  }
+
+  hunts: ScavengerHunt[] = [];
+
+  get topHunts(): ScavengerHunt[] {
+    return [...this.hunts].sort((a, b) => a.totalTime - b.totalTime);
+  }
+
+  get recentHunts(): ScavengerHunt[] {
+    return [...this.hunts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  }
 
   onNameInput(event: any) {
     this.playerName = event.target.value;
