@@ -15,6 +15,7 @@ import { Camera } from '@capacitor/camera';
 import {ScavengerHunt} from "../models/scavenger-hunt";
 import {DatePipe} from "@angular/common";
 import {ScavangerHuntDataService} from "../services/scavanger-hunt-data.service";
+import {ScavangerHuntManagerService} from "../services/scavanger-hunt-manager.service";
 
 @Component({
   selector: 'app-home',
@@ -33,7 +34,8 @@ export class HomePage {
   @ViewChild('playerNameInput', { static: false }) playerNameInput!: IonInput;
 
   constructor(
-    private scavangerHuntDataService: ScavangerHuntDataService
+    private scavangerHuntDataService: ScavangerHuntDataService,
+    private ScavangerHunt: ScavangerHuntManagerService
   ) {
     this.scavangerHuntDataService.seedTestData();
   }
@@ -62,8 +64,8 @@ export class HomePage {
   async onCameraPermissionChange(event: any) {
     if (event.detail.checked) {
       try {
-        await Camera.requestPermissions();
-        this.cameraPermission = true;
+        const result = await Camera.requestPermissions();
+        this.cameraPermission = result.camera === 'granted';
       } catch (error) {
         this.cameraPermission = false;
       }
@@ -75,8 +77,8 @@ export class HomePage {
   async onLocationPermissionChange(event: any) {
     if (event.detail.checked) {
       try {
-        await Geolocation.requestPermissions();
-        this.locationPermission = true;
+        const result = await Geolocation.requestPermissions();
+        this.locationPermission = result.location === 'granted' || result.coarseLocation === 'granted';
       } catch (error) {
         this.locationPermission = false;
       }
@@ -87,5 +89,12 @@ export class HomePage {
 
   canStart(): boolean {
     return this.cameraPermission && this.locationPermission;
+  }
+
+  startHunt() {
+    if (this.playerName && this.canStart()) {
+      this.permissionModal.dismiss();
+      this.ScavangerHunt.startHunt(this.playerName);
+    }
   }
 }

@@ -64,6 +64,7 @@ export class ScavangerHuntManagerService {
       lastTimestamp.endTime = new Date().toISOString();
 
       this.DataService.updateHunt(huntId, hunt);
+      Haptics.notification({ type: NotificationType.Success });
     }
   }
 
