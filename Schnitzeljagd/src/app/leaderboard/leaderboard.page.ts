@@ -24,7 +24,6 @@ export class LeaderboardPage {
   hunts: ScavengerHunt[] = [];
 
   constructor(private scavangerHuntDataService: ScavangerHuntDataService) {
-    this.scavangerHuntDataService.seedTestData();
     this.hunts = this.scavangerHuntDataService.getHunts();
   }
 

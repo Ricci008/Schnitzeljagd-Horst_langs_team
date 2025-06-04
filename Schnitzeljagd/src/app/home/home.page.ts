@@ -25,6 +25,7 @@ import {ScavangerHuntManagerService} from "../services/scavanger-hunt-manager.se
 })
 export class HomePage {
   playerName: string = '';
+  hunts: ScavengerHunt[] = [];
 
   cameraPermission: boolean = false;
   locationPermission: boolean = false;
@@ -36,11 +37,9 @@ export class HomePage {
   constructor(
     private scavangerHuntDataService: ScavangerHuntDataService,
     private ScavangerHunt: ScavangerHuntManagerService
-  ) {
-    this.scavangerHuntDataService.seedTestData();
-  }
+  ) {this.hunts = this.scavangerHuntDataService.getHunts();}
 
-  hunts: ScavengerHunt[] = [];
+
 
   get topHunts(): ScavengerHunt[] {
     return [...this.hunts].sort((a, b) => a.totalTime - b.totalTime);
