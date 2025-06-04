@@ -1,6 +1,10 @@
 <ion-content class="content" [fullscreen]="true">
   <app-objective-title title="Sensorik" description="Drehe dein Smartphone um 90 Grad. Sobald dein Gerät die Bewegung erkannt hat, ist dieser Schritt abgeschlossen und du kannst weitermachen! " ></app-objective-title>
-  <app-objective-state objectiveState="Drehung noch nicht erkannt"></app-objective-state>
+  @if (isTaskDone) {
+    <app-objective-state objectiveState="Drehung erkannt! Beginne mit der nächsten Aufgabe"></app-objective-state>
+  } @else {
+    <app-objective-state objectiveState="Drehung noch nicht erkannt"></app-objective-state>
+  }
 </ion-content>
 <ion-footer>
   <app-progressbar [doneObjectives]="objectiveNumber" totalObjectives="6"></app-progressbar>

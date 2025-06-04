@@ -1,7 +1,12 @@
 <ion-content class="content" [fullscreen]="true">
   <app-objective-title title="QR Codes" description="Scanne einen QR-Code mit der Kamera deines Handys. Nach dem erfolgreichen Scan wird die nächste Aufgabe freigeschaltet! " ></app-objective-title>
+@if (isTaskDone) {
+  <app-objective-state objectiveState="Erfolgreich Gescannt! Beginne mit der nächsten Aufgabe"></app-objective-state>
+} @else {
   <app-objective-state objectiveState="Noch nicht eingesteckt."></app-objective-state>
+}
 </ion-content>
+
 <ion-footer>
   <app-progressbar [doneObjectives]="objectiveNumber" totalObjectives="6"></app-progressbar>
   <app-toolbar (nextTask)="nextTask()" (skipTask)="skipTask()" (exit)="exitHunt()" [taskDone]="isTaskDone"></app-toolbar>

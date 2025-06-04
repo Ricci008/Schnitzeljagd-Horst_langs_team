@@ -1,6 +1,10 @@
 <ion-content class="content" [fullscreen]="true">
   <app-objective-title title="Lade dein Handy" description="Finde eine Ladestation und verbinde dein Handy mit dem Stromnetz, um den Akku aufzuladen und die Aufgabe zu bestehen." ></app-objective-title>
-  <app-objective-state objectiveState="Noch nicht eingesteckt."></app-objective-state>
+  @if (isTaskDone) {
+    <app-objective-state objectiveState="Eingesteckt! Beginne mit der nächsten Aufgabe"></app-objective-state>
+  } @else {
+    <app-objective-state objectiveState="Noch nicht eingesteckt."></app-objective-state>
+  }
 </ion-content>
 <ion-footer>
   <app-progressbar [doneObjectives]="objectiveNumber" totalObjectives="6"></app-progressbar>

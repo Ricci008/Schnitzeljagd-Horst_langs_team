@@ -1,6 +1,10 @@
 <ion-content class="content" [fullscreen]="true">
   <app-objective-title title="Distanz" description="Bewege dich zu Fuß über eine Strecke von X Metern. Hast du die Strecke geschafft, schaltest du die nächste Station frei!" ></app-objective-title>
-  <app-objective-state objectiveState="Du bist noch nicht die vorgegeben Distanz gelofen."></app-objective-state>
+  @if (isTaskDone) {
+    <app-objective-state objectiveState="Geschafft! Beginne mit der nächsten Aufgabe"></app-objective-state>
+  } @else {
+    <app-objective-state objectiveState="Du bist noch nicht die vorgegeben Distanz gelofen."></app-objective-state>
+  }
 </ion-content>
 <ion-footer>
   <app-progressbar [doneObjectives]="objectiveNumber" totalObjectives="6"></app-progressbar>

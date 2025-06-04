@@ -1,6 +1,10 @@
 <ion-content class="content" [fullscreen]="true">
   <app-objective-title title="Geolocation" description="Gehe zu dem festgelegten Zielort. Wenn du dort angekommen bist und dein Standort erkannt wurde, kannst du zur nächsten Aufgabe übergehen!"></app-objective-title>
-<app-objective-state objectiveState="Noch x Meter bis zum Ziel"></app-objective-state>
+  @if (isTaskDone) {
+    <app-objective-state objectiveState="Geschafft! Beginne mit der nächsten Aufgabe"></app-objective-state>
+  } @else {
+    <app-objective-state objectiveState="Noch x Meter bis zum Ziel"></app-objective-state>
+  }
 </ion-content>
 <ion-footer>
   <app-progressbar [doneObjectives]="objectiveNumber" totalObjectives="6"></app-progressbar>
