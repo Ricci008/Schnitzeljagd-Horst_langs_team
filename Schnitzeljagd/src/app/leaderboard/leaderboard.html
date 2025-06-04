@@ -1,18 +1,17 @@
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Bestenliste</ion-title>
     </ion-toolbar>
-    <ion-button  [color]="mode === 'top' ? 'primary' : 'medium'" (click)="setMode('top')" >Top</ion-button>
-    <ion-button [color]="mode === 'latest' ? 'primary' : 'medium'" (click)="setMode('latest')">Letzte</ion-button>
-  </ion-header>
+    <ion-button [color]="mode === 'top' ? 'primary' : 'medium'" (click)="setMode('top')">Top</ion-button>
+    <ion-button [color]="mode === 'latest' ? 'primary' : 'medium'" (click)="setMode('latest')">Neuste</ion-button>
+    </ion-header>
 <ion-list>
-  @for (entry of list; track entry) {
+  @for (hunt of filteredHunts; track hunt.id) {
     <ion-item>
       <ion-label>
-        <h2>{{ entry.name }}</h2>
-        <p>{{ entry.time }}</p>
+        <h2>{{ hunt.playerName }}</h2>
+        <p>{{ hunt.totalTime }} Sekunden</p>
       </ion-label>
     </ion-item>
   }

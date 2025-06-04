@@ -10,6 +10,8 @@ import {
   IonItem
 } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
+import { ScavangerHuntDataService } from '../services/scavanger-hunt-data.service';
+import { ScavengerHunt } from '../models/scavenger-hunt';
 
 @Component({
   selector: 'app-leaderboard',
@@ -19,27 +21,22 @@ import { ExploreContainerComponent } from '../explore-container/explore-containe
 })
 export class LeaderboardPage {
   mode: 'top' | 'latest' = 'top';
+  hunts: ScavengerHunt[] = [];
 
-  topList = [
-    { name: 'Max Mustermann', time: 80 },
-    { name: 'Erika Mustermann', time: 90 },
-    { name: 'Hans Müller', time: 100 }
-
-  ];
-
-  latestList = [
-    { name: 'Max Mustermann', time: 30 },
-    { name: 'Erika Mustermann', time: 40 },
-    { name: 'Hans Müller', time: 50 }
-  ];
-
-  get list() {
-    return this.mode === 'top' ? this.topList : this.latestList;
+  constructor(private scavangerHuntDataService: ScavangerHuntDataService) {
+    this.scavangerHuntDataService.seedTestData();
+    this.hunts = this.scavangerHuntDataService.getHunts();
   }
 
   setMode(mode: 'top' | 'latest') {
     this.mode = mode;
   }
-  constructor() {}
 
+  get filteredHunts(): ScavengerHunt[] {
+    if (this.mode === 'top') {
+      return [...this.hunts].sort((a, b) => a.totalTime - b.totalTime);
+    } else {
+      return [...this.hunts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    }
+  }
 }
