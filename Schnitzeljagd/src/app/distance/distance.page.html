@@ -3,7 +3,7 @@
   @if (isTaskDone) {
     <app-objective-state objectiveState="Geschafft! Beginne mit der nächsten Aufgabe"></app-objective-state>
   } @else {
-    <app-objective-state objectiveState="Du bist erst {{totalDistance}} Meter gelaufen."></app-objective-state>
+    <app-objective-state objectiveState="Du bist erst {{totalDistance.toFixed(1)}} Meter gelaufen."></app-objective-state>
   }
 </ion-content>
 <ion-footer>
