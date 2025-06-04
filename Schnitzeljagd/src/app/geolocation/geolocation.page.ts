@@ -79,7 +79,6 @@ export class GeolocationPage implements OnInit, OnDestroy {
       const distance = haversineDistance(currentCoords, this.targetCoords);
       this.ngZone.run(() => {
         this.distanceToTarget = distance;
-        console.log(distance)
         if (distance < 10 && !this.isTaskDone) {
           this.markTaskDone();
         }
