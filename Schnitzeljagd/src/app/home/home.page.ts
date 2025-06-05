@@ -55,7 +55,7 @@ export class HomePage implements OnInit {
   }
 
   get topHunts(): ScavengerHunt[] {
-    return [...this.hunts].sort((a, b) => b.totalTime - a.totalTime);
+    return [...this.hunts].sort((a, b) => a.points - b.points);
   }
 
   get recentHunts(): ScavengerHunt[] {
