@@ -38,7 +38,6 @@
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "wifiwizard2": "^3.1.1",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
