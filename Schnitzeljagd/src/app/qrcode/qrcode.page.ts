@@ -1,7 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {IonContent, IonFooter} from '@ionic/angular/standalone';
+import {
+  IonButton,
+  IonButtons, IonCard,
+  IonCheckbox,
+  IonContent,
+  IonFooter,
+  IonHeader,
+  IonItem,
+  IonModal, IonTitle, IonToolbar
+} from '@ionic/angular/standalone';
 import {ObjectiveTitleComponent} from "../objective-title/objective-title.component";
 import {ObjectiveStateComponent} from "../objective-state/objective-state.component";
 import {ProgressbarComponent} from "../progressbar/progressbar.component";
@@ -15,11 +24,13 @@ import { BarcodeFormat } from '@zxing/library';
   templateUrl: './qrcode.page.html',
   styleUrls: ['./qrcode.page.scss'],
   standalone: true,
-  imports: [IonContent, ZXingScannerModule, CommonModule, FormsModule, ObjectiveTitleComponent, ObjectiveStateComponent, IonFooter, ProgressbarComponent, ToolbarComponent]
+  imports: [IonContent, ZXingScannerModule, CommonModule, FormsModule, ObjectiveTitleComponent, ObjectiveStateComponent, IonFooter, ProgressbarComponent, ToolbarComponent, IonButton, IonButtons, IonCheckbox, IonHeader, IonItem, IonModal, IonTitle, IonToolbar, IonCard]
 })
 export class QrcodePage implements OnInit {
   objectiveNumber: number = 0;
   isTaskDone: boolean = false;
+
+  @ViewChild('scannerModal', { static: false }) scannerModal!: IonModal;
 
   constructor(private ScavangerHunt: ScavangerHuntManagerService) { }
 
@@ -52,6 +63,7 @@ export class QrcodePage implements OnInit {
 
   onCodeResult(result: string) {
     if (result === this.validQRCode && !this.isTaskDone) {
+      this.scannerModal.dismiss()
       this.markTaskDone();
     }
   }
