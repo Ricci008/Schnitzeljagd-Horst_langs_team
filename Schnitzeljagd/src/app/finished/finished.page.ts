@@ -11,6 +11,7 @@ import { ScavangerHuntDataService} from "../services/scavanger-hunt-data.service
 import {addIcons} from "ionicons";
 import {exitOutline} from "ionicons/icons";
 
+
 @Component({
   selector: 'app-finished',
   templateUrl: './finished.page.html',
@@ -36,6 +37,17 @@ export class FinishedPage implements OnInit {
 
   onExit() {
     this.router.navigate(["/tabs/leaderboard"]);
+  }
+
+  formatTime(seconds: number | undefined): string {
+    if (seconds === undefined) return '00:00';
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = Math.floor(seconds % 60);
+    if (h > 0) {
+      return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    }
+    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
   }
 
 }
