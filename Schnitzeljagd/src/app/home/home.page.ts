@@ -13,7 +13,7 @@ import {
 import { Geolocation } from '@capacitor/geolocation';
 import { Camera } from '@capacitor/camera';
 import {ScavengerHunt} from "../models/scavenger-hunt";
-import {DatePipe} from "@angular/common";
+import {DatePipe, SlicePipe} from "@angular/common";
 import {ScavangerHuntDataService} from "../services/scavanger-hunt-data.service";
 import {ScavangerHuntManagerService} from "../services/scavanger-hunt-manager.service";
 
@@ -21,7 +21,7 @@ import {ScavangerHuntManagerService} from "../services/scavanger-hunt-manager.se
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonCard, IonCardHeader, IonCardTitle, IonList, IonItem, IonModal, IonButtons, IonCheckbox, IonInput, IonLabel, DatePipe],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonCard, IonCardHeader, IonCardTitle, IonList, IonItem, IonModal, IonButtons, IonCheckbox, IonInput, IonLabel, DatePipe, SlicePipe],
 })
 
 export class HomePage implements OnInit {
