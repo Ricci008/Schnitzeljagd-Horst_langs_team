@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {
   IonHeader,
   IonToolbar,
@@ -20,11 +21,23 @@ import {DatePipe} from "@angular/common";
   styleUrls: ['leaderbaord.scss'],
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, IonButton, IonList, IonLabel, IonItem, DatePipe, IonCard]
 })
-export class LeaderboardPage {
+export class LeaderboardPage implements OnInit {
   mode: 'top' | 'latest' = 'top';
   hunts: ScavengerHunt[] = [];
 
-  constructor(private scavangerHuntDataService: ScavangerHuntDataService) {
+  constructor(private scavangerHuntDataService: ScavangerHuntDataService, private route: ActivatedRoute) {this.reloadHunts()}
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.reloadHunts();
+    });
+
+    this.route.url.subscribe(() => {
+      this.reloadHunts();
+    });this.hunts = this.scavangerHuntDataService.getHunts();
+  }
+
+  private reloadHunts() {
     this.hunts = this.scavangerHuntDataService.getHunts();
   }
 

@@ -1,4 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {
   IonHeader,
   IonToolbar,
@@ -8,7 +9,6 @@ import {
   IonCard,
   IonCardHeader, IonCardTitle, IonList, IonItem, IonModal, IonButtons, IonCheckbox, IonInput, IonLabel
 } from '@ionic/angular/standalone';
-
 
 import { Geolocation } from '@capacitor/geolocation';
 import { Camera } from '@capacitor/camera';
@@ -23,7 +23,8 @@ import {ScavangerHuntManagerService} from "../services/scavanger-hunt-manager.se
   styleUrls: ['home.page.scss'],
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonCard, IonCardHeader, IonCardTitle, IonList, IonItem, IonModal, IonButtons, IonCheckbox, IonInput, IonLabel, DatePipe],
 })
-export class HomePage {
+
+export class HomePage implements OnInit {
   playerName: string = '';
   hunts: ScavengerHunt[] = [];
 
@@ -36,10 +37,22 @@ export class HomePage {
 
   constructor(
     private scavangerHuntDataService: ScavangerHuntDataService,
-    private ScavangerHunt: ScavangerHuntManagerService
-  ) {this.hunts = this.scavangerHuntDataService.getHunts();}
+    private ScavangerHunt: ScavangerHuntManagerService,
+    private route: ActivatedRoute
+  ) {this.reloadHunts()}
 
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.reloadHunts();
+    });
 
+    this.route.url.subscribe(() => {
+      this.reloadHunts();
+    });
+  }
+  private reloadHunts() {
+    this.hunts = this.scavangerHuntDataService.getHunts();
+  }
 
   get topHunts(): ScavengerHunt[] {
     return [...this.hunts].sort((a, b) => a.totalTime - b.totalTime);
