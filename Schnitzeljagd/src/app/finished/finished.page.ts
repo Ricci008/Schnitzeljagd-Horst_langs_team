@@ -33,7 +33,6 @@ export class FinishedPage implements OnInit {
     this.points = currentScavengerHunt?.points;
     this.skipedTasks = currentScavengerHunt?.reductions;
     this.usedTime = currentScavengerHunt?.totalTime;
-    console.log(currentScavengerHunt?.totalTime);
   }
 
   onExit() {
