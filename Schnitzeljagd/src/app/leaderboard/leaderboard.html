@@ -25,7 +25,7 @@
     </ion-card>
   </ion-header>
   <ion-list>
-    @if(filteredHunts > 0) {
+    @if(filteredHunts.length > 0) {
       @for (hunt of filteredHunts; track hunt.id) {
         <ion-item>
           <ion-label>
