@@ -87,7 +87,6 @@ export class ScavangerHuntManagerService {
         hunt.points += 1;
         Haptics.notification({ type: NotificationType.Success });
       } else {
-        hunt.reductions += 1;
         Haptics.notification({ type: NotificationType.Warning });
       }
 
