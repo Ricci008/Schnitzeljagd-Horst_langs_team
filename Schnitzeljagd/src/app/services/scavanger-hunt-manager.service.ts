@@ -118,6 +118,8 @@ export class ScavangerHuntManagerService {
         }
       }
 
+      hunt.totalTime = (new Date(lastTimestamp.endTime).getTime() - new Date(hunt.timestamps[0].startTime).getTime()) / 1000;
+
       Haptics.notification({ type: NotificationType.Success });
       this.DataService.updateHunt(huntId, hunt);
       this.router.navigate(['/finished'])
