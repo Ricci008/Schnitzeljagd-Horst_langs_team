@@ -9,5 +9,5 @@ export interface ScavengerHunt {
     objective: number;
     startTime: string;
     endTime: string;
-  }>
+  }>;
 }

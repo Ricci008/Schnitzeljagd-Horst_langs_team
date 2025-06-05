@@ -1,10 +1,17 @@
 <ion-content class="content" [fullscreen]="true">
-  <app-objective-title title="QR Codes" description="Scanne einen QR-Code mit der Kamera deines Handys. Nach dem erfolgreichen Scan wird die nächste Aufgabe freigeschaltet! " ></app-objective-title>
+  <app-objective-title
+    title="QR Codes"
+    description="Scanne einen QR-Code mit der Kamera deines Handys. Nach dem erfolgreichen Scan wird die nächste Aufgabe freigeschaltet! "
+  ></app-objective-title>
 
   @if (isTaskDone) {
-    <app-objective-state objectiveState="Erfolgreich Gescannt! Beginne mit der nächsten Aufgabe"></app-objective-state>
+  <app-objective-state
+    objectiveState="Erfolgreich Gescannt! Beginne mit der nächsten Aufgabe"
+  ></app-objective-state>
   } @else {
-    <app-objective-state objectiveState="Noch nicht gescannt."></app-objective-state>
+  <app-objective-state
+    objectiveState="Noch nicht gescannt."
+  ></app-objective-state>
   }
 
   <ion-card color="transparent">
@@ -24,7 +31,8 @@
       <ion-content>
         <zxing-scanner
           [formats]="formatsEnabled"
-          (scanSuccess)="onCodeResult($event)">
+          (scanSuccess)="onCodeResult($event)"
+        >
         </zxing-scanner>
       </ion-content>
     </ng-template>
@@ -32,6 +40,14 @@
 </ion-content>
 
 <ion-footer>
-  <app-progressbar [doneObjectives]="objectiveNumber" totalObjectives="6"></app-progressbar>
-  <app-toolbar (nextTask)="nextTask()" (skipTask)="skipTask()" (exit)="exitHunt()" [taskDone]="isTaskDone"></app-toolbar>
+  <app-progressbar
+    [doneObjectives]="objectiveNumber"
+    totalObjectives="6"
+  ></app-progressbar>
+  <app-toolbar
+    (nextTask)="nextTask()"
+    (skipTask)="skipTask()"
+    (exit)="exitHunt()"
+    [taskDone]="isTaskDone"
+  ></app-toolbar>
 </ion-footer>

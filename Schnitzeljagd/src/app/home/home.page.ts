@@ -7,23 +7,48 @@ import {
   IonContent,
   IonButton,
   IonCard,
-  IonCardHeader, IonCardTitle, IonList, IonItem, IonModal, IonButtons, IonCheckbox, IonInput, IonLabel
+  IonCardHeader,
+  IonCardTitle,
+  IonList,
+  IonItem,
+  IonModal,
+  IonButtons,
+  IonCheckbox,
+  IonInput,
+  IonLabel,
 } from '@ionic/angular/standalone';
 
 import { Geolocation } from '@capacitor/geolocation';
 import { Camera } from '@capacitor/camera';
-import {ScavengerHunt} from "../models/scavenger-hunt";
-import {DatePipe, SlicePipe} from "@angular/common";
-import {ScavangerHuntDataService} from "../services/scavanger-hunt-data.service";
-import {ScavangerHuntManagerService} from "../services/scavanger-hunt-manager.service";
+import { ScavengerHunt } from '../models/scavenger-hunt';
+import { DatePipe, SlicePipe } from '@angular/common';
+import { ScavangerHuntDataService } from '../services/scavanger-hunt-data.service';
+import { ScavangerHuntManagerService } from '../services/scavanger-hunt-manager.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonCard, IonCardHeader, IonCardTitle, IonList, IonItem, IonModal, IonButtons, IonCheckbox, IonInput, IonLabel, DatePipe, SlicePipe],
+  imports: [
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonButton,
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonList,
+    IonItem,
+    IonModal,
+    IonButtons,
+    IonCheckbox,
+    IonInput,
+    IonLabel,
+    DatePipe,
+    SlicePipe,
+  ],
 })
-
 export class HomePage implements OnInit {
   playerName: string = '';
   hunts: ScavengerHunt[] = [];
@@ -38,11 +63,13 @@ export class HomePage implements OnInit {
   constructor(
     private scavangerHuntDataService: ScavangerHuntDataService,
     private ScavangerHunt: ScavangerHuntManagerService,
-    private route: ActivatedRoute
-  ) {this.reloadHunts()}
+    private route: ActivatedRoute,
+  ) {
+    this.reloadHunts();
+  }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       this.reloadHunts();
     });
 
@@ -59,7 +86,9 @@ export class HomePage implements OnInit {
   }
 
   get recentHunts(): ScavengerHunt[] {
-    return [...this.hunts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return [...this.hunts].sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+    );
   }
 
   onNameInput(event: any) {
@@ -90,7 +119,8 @@ export class HomePage implements OnInit {
     if (event.detail.checked) {
       try {
         const result = await Geolocation.requestPermissions();
-        this.locationPermission = result.location === 'granted' || result.coarseLocation === 'granted';
+        this.locationPermission =
+          result.location === 'granted' || result.coarseLocation === 'granted';
       } catch (error) {
         this.locationPermission = false;
       }

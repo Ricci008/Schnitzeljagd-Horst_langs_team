@@ -1,20 +1,24 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {IonActionSheet, IonIcon, IonTabBar, IonTabButton} from "@ionic/angular/standalone";
-import {addIcons} from "ionicons";
-import {exitOutline, chevronForwardOutline, playSkipForwardOutline} from "ionicons/icons";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  IonActionSheet,
+  IonIcon,
+  IonTabBar,
+  IonTabButton,
+} from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import {
+  exitOutline,
+  chevronForwardOutline,
+  playSkipForwardOutline,
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
-  imports: [
-    IonTabBar,
-    IonTabButton,
-    IonIcon,
-    IonActionSheet
-  ]
+  imports: [IonTabBar, IonTabButton, IonIcon, IonActionSheet],
 })
-export class ToolbarComponent  implements OnInit {
+export class ToolbarComponent implements OnInit {
   @Input() taskDone = false;
 
   @Output() exit = new EventEmitter<void>();
@@ -22,7 +26,7 @@ export class ToolbarComponent  implements OnInit {
   @Output() skipTask = new EventEmitter<void>();
 
   constructor() {
-    addIcons({exitOutline, chevronForwardOutline, playSkipForwardOutline});
+    addIcons({ exitOutline, chevronForwardOutline, playSkipForwardOutline });
   }
 
   ngOnInit(): void {}

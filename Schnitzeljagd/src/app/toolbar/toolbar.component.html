@@ -5,12 +5,25 @@
 
   @if (taskDone) {
     <ion-tab-button (click)="onNextTaskClick()" tab="next">
-      <ion-icon class="next" aria-hidden="true" name="chevron-forward-outline"></ion-icon>
+      <ion-icon
+        class="next"
+        aria-hidden="true"
+        name="chevron-forward-outline"
+      ></ion-icon>
     </ion-tab-button>
   } @else {
     <ion-tab-button (click)="onSkipTaskClick()" tab="skip">
-      <ion-icon class="skip" aria-hidden="true" name="play-skip-forward-outline"></ion-icon>
+      <ion-icon
+        class="skip"
+        aria-hidden="true"
+        name="play-skip-forward-outline"
+      ></ion-icon>
     </ion-tab-button>
   }
 </ion-tab-bar>
-<ion-action-sheet header="Möchtest du die Schnitzeljagd wirklich verlassen ?" [buttons]="actionSheetButtons" (didDismiss)="handleResult($event)" [isOpen]="isActionSheetOpen"></ion-action-sheet>
+<ion-action-sheet
+  header="Möchtest du die Schnitzeljagd wirklich verlassen ?"
+  [buttons]="actionSheetButtons"
+  (didDismiss)="handleResult($event)"
+  [isOpen]="isActionSheetOpen"
+></ion-action-sheet>

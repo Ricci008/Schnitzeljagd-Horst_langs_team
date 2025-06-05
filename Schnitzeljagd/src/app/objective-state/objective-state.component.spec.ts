@@ -9,8 +9,8 @@ describe('ObjectiveStateComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ObjectiveStateComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [ObjectiveStateComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ObjectiveStateComponent);

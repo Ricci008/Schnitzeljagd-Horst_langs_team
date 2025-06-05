@@ -7,30 +7,36 @@ export const routes: Routes = [
   },
   {
     path: 'geolocation',
-    loadComponent: () => import('./geolocation/geolocation.page').then( m => m.GeolocationPage)
+    loadComponent: () =>
+      import('./geolocation/geolocation.page').then((m) => m.GeolocationPage),
   },
   {
     path: 'qrcode',
-    loadComponent: () => import('./qrcode/qrcode.page').then( m => m.QrcodePage)
+    loadComponent: () =>
+      import('./qrcode/qrcode.page').then((m) => m.QrcodePage),
   },
   {
     path: 'sensors',
-    loadComponent: () => import('./sensors/sensors.page').then( m => m.SensorsPage)
+    loadComponent: () =>
+      import('./sensors/sensors.page').then((m) => m.SensorsPage),
   },
   {
     path: 'charger',
-    loadComponent: () => import('./charger/charger.page').then( m => m.ChargerPage)
+    loadComponent: () =>
+      import('./charger/charger.page').then((m) => m.ChargerPage),
   },
   {
     path: 'wifi',
-    loadComponent: () => import('./wifi/wifi.page').then( m => m.WifiPage)
+    loadComponent: () => import('./wifi/wifi.page').then((m) => m.WifiPage),
   },
   {
     path: 'distance',
-    loadComponent: () => import('./distance/distance.page').then( m => m.DistancePage)
+    loadComponent: () =>
+      import('./distance/distance.page').then((m) => m.DistancePage),
   },
   {
     path: 'finished',
-    loadComponent: () => import('./finished/finished.page').then( m => m.FinishedPage)
+    loadComponent: () =>
+      import('./finished/finished.page').then((m) => m.FinishedPage),
   },
 ];

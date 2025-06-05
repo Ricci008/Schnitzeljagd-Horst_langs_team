@@ -1,12 +1,27 @@
 <ion-content class="content" [fullscreen]="true">
-  <app-objective-title title="Distanz" description="Bewege dich zu Fuss über eine Strecke von 10 Metern. Hast du die Strecke geschafft, schaltest du die nächste Station frei!" ></app-objective-title>
+  <app-objective-title
+    title="Distanz"
+    description="Bewege dich zu Fuss über eine Strecke von 10 Metern. Hast du die Strecke geschafft, schaltest du die nächste Station frei!"
+  ></app-objective-title>
   @if (isTaskDone) {
-    <app-objective-state objectiveState="Geschafft! Beginne mit der nächsten Aufgabe"></app-objective-state>
+  <app-objective-state
+    objectiveState="Geschafft! Beginne mit der nächsten Aufgabe"
+  ></app-objective-state>
   } @else {
-    <app-objective-state objectiveState="Du bist erst {{totalDistance.toFixed(1)}} Meter gelaufen."></app-objective-state>
+  <app-objective-state
+    objectiveState="Du bist erst {{totalDistance.toFixed(1)}} Meter gelaufen."
+  ></app-objective-state>
   }
 </ion-content>
 <ion-footer>
-  <app-progressbar [doneObjectives]="objectiveNumber" totalObjectives="6"></app-progressbar>
-  <app-toolbar (nextTask)="nextTask()" (skipTask)="skipTask()" (exit)="exitHunt()" [taskDone]="isTaskDone"></app-toolbar>
+  <app-progressbar
+    [doneObjectives]="objectiveNumber"
+    totalObjectives="6"
+  ></app-progressbar>
+  <app-toolbar
+    (nextTask)="nextTask()"
+    (skipTask)="skipTask()"
+    (exit)="exitHunt()"
+    [taskDone]="isTaskDone"
+  ></app-toolbar>
 </ion-footer>

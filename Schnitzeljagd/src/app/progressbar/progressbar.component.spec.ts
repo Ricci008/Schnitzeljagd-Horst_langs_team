@@ -9,8 +9,8 @@ describe('ProgressbarComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProgressbarComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [ProgressbarComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProgressbarComponent);

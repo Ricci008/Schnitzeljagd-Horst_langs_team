@@ -9,8 +9,8 @@ describe('ToolbarComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ToolbarComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [ToolbarComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ToolbarComponent);

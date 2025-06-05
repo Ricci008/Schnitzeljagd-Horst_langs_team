@@ -1,12 +1,27 @@
 <ion-content class="content" [fullscreen]="true">
-  <app-objective-title title="WLAN" description="Verbinde dich mit dem WLAN „ICT-BLJ“. Sobald du erfolgreich verbunden bist, geht es weiter zur nächsten Aufgabe!" ></app-objective-title>
+  <app-objective-title
+    title="WLAN"
+    description="Verbinde dich mit dem WLAN „ICT-BLJ“. Sobald du erfolgreich verbunden bist, geht es weiter zur nächsten Aufgabe!"
+  ></app-objective-title>
   @if (isTaskDone) {
-    <app-objective-state objectiveState="Verbunden! Fahren sie weiter"></app-objective-state>
+  <app-objective-state
+    objectiveState="Verbunden! Fahren sie weiter"
+  ></app-objective-state>
   } @else {
-    <app-objective-state objectiveState="Noch nicht Verbunden."></app-objective-state>
+  <app-objective-state
+    objectiveState="Noch nicht Verbunden."
+  ></app-objective-state>
   }
 </ion-content>
 <ion-footer>
-  <app-progressbar [doneObjectives]="objectiveNumber" totalObjectives="6"></app-progressbar>
-  <app-toolbar (nextTask)="nextTask()" (skipTask)="skipTask()" (exit)="exitHunt()" [taskDone]="isTaskDone"></app-toolbar>
+  <app-progressbar
+    [doneObjectives]="objectiveNumber"
+    totalObjectives="6"
+  ></app-progressbar>
+  <app-toolbar
+    (nextTask)="nextTask()"
+    (skipTask)="skipTask()"
+    (exit)="exitHunt()"
+    [taskDone]="isTaskDone"
+  ></app-toolbar>
 </ion-footer>

@@ -1,14 +1,20 @@
-import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {IonContent, IonFooter, IonHeader, IonTitle, IonToolbar} from '@ionic/angular/standalone';
-import { Geolocation} from "@capacitor/geolocation";
-import {ObjectiveTitleComponent} from "../objective-title/objective-title.component";
-import {ObjectiveStateComponent} from "../objective-state/objective-state.component";
-import {ProgressbarComponent} from "../progressbar/progressbar.component";
-import {ToolbarComponent} from "../toolbar/toolbar.component";
+import {
+  IonContent,
+  IonFooter,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/angular/standalone';
+import { Geolocation } from '@capacitor/geolocation';
+import { ObjectiveTitleComponent } from '../objective-title/objective-title.component';
+import { ObjectiveStateComponent } from '../objective-state/objective-state.component';
+import { ProgressbarComponent } from '../progressbar/progressbar.component';
+import { ToolbarComponent } from '../toolbar/toolbar.component';
 
-import {ScavangerHuntManagerService} from "../services/scavanger-hunt-manager.service";
+import { ScavangerHuntManagerService } from '../services/scavanger-hunt-manager.service';
 
 export function haversineDistance(
   coords1: { latitude: number; longitude: number },
@@ -23,9 +29,9 @@ export function haversineDistance(
   const a =
     Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
     Math.cos(lat1Rad) *
-    Math.cos(lat2Rad) *
-    Math.sin(deltaLon / 2) *
-    Math.sin(deltaLon / 2);
+      Math.cos(lat2Rad) *
+      Math.sin(deltaLon / 2) *
+      Math.sin(deltaLon / 2);
 
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
@@ -39,7 +45,19 @@ export function haversineDistance(
   templateUrl: './geolocation.page.html',
   styleUrls: ['./geolocation.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ObjectiveTitleComponent, ObjectiveStateComponent, IonFooter, ProgressbarComponent, ToolbarComponent]
+  imports: [
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    CommonModule,
+    FormsModule,
+    ObjectiveTitleComponent,
+    ObjectiveStateComponent,
+    IonFooter,
+    ProgressbarComponent,
+    ToolbarComponent,
+  ],
 })
 export class GeolocationPage implements OnInit, OnDestroy {
   objectiveNumber: number = 0;
@@ -47,13 +65,15 @@ export class GeolocationPage implements OnInit, OnDestroy {
   distanceToTarget: number = 0;
   private intervalId: any;
 
-  targetCoords = { latitude: 47.02758723687247, longitude: 8.300906172755733  };
+  targetCoords = { latitude: 47.02758723687247, longitude: 8.300906172755733 };
 
-
-  constructor(private ScavangerHunt: ScavangerHuntManagerService, private ngZone: NgZone) { }
+  constructor(
+    private ScavangerHunt: ScavangerHuntManagerService,
+    private ngZone: NgZone,
+  ) {}
 
   ngOnInit() {
-     this.objectiveNumber = this.ScavangerHunt.getObjectiveNumber() - 1;
+    this.objectiveNumber = this.ScavangerHunt.getObjectiveNumber() - 1;
     this.startLocationCheck();
   }
 
@@ -64,26 +84,29 @@ export class GeolocationPage implements OnInit, OnDestroy {
   }
 
   async startLocationCheck() {
-    const watchId = await Geolocation.watchPosition({
-      enableHighAccuracy: true,
-      timeout: 1000,
-      maximumAge: 0
-    }, (position, err) => {
-      if (err || !position) {
-        return;
-      }
-      const currentCoords = {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude
-      };
-      const distance = haversineDistance(currentCoords, this.targetCoords);
-      this.ngZone.run(() => {
-        this.distanceToTarget = distance;
-        if (distance < 10 && !this.isTaskDone) {
-          this.markTaskDone();
+    const watchId = await Geolocation.watchPosition(
+      {
+        enableHighAccuracy: true,
+        timeout: 1000,
+        maximumAge: 0,
+      },
+      (position, err) => {
+        if (err || !position) {
+          return;
         }
-      });
-    });
+        const currentCoords = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        };
+        const distance = haversineDistance(currentCoords, this.targetCoords);
+        this.ngZone.run(() => {
+          this.distanceToTarget = distance;
+          if (distance < 10 && !this.isTaskDone) {
+            this.markTaskDone();
+          }
+        });
+      },
+    );
     this.intervalId = watchId;
   }
 

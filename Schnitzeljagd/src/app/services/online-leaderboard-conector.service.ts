@@ -2,14 +2,20 @@ import { Injectable } from '@angular/core';
 import { CapacitorHttp } from '@capacitor/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OnlineLeaderboardConectorService {
-  api_url: string = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSc9v68rbCckYwcIekRLOaVZ0Qdm3eeh1xCEkgpn3d7pParfLQ/formResponse';
+  api_url: string =
+    'https://docs.google.com/forms/u/0/d/e/1FAIpQLSc9v68rbCckYwcIekRLOaVZ0Qdm3eeh1xCEkgpn3d7pParfLQ/formResponse';
 
-  constructor() { }
+  constructor() {}
 
-  async submitScore(playerName: string, points: number, reductions : number, time: number): Promise<void> {
+  async submitScore(
+    playerName: string,
+    points: number,
+    reductions: number,
+    time: number,
+  ): Promise<void> {
     const requestBody =
       `entry.1860183935=${playerName}` +
       `&entry.564282981=${points}` +
