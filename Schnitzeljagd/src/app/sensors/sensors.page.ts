@@ -13,7 +13,7 @@ import {ScavangerHuntManagerService} from "../services/scavanger-hunt-manager.se
   templateUrl: './sensors.page.html',
   styleUrls: ['./sensors.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ObjectiveTitleComponent, ObjectiveStateComponent, IonFooter, ProgressbarComponent, ToolbarComponent]
+  imports: [IonContent, CommonModule, FormsModule, ObjectiveTitleComponent, ObjectiveStateComponent, IonFooter, ProgressbarComponent, ToolbarComponent]
 })
 export class SensorsPage implements OnInit, OnDestroy {
   objectiveNumber: number = 0;
@@ -28,7 +28,12 @@ export class SensorsPage implements OnInit, OnDestroy {
   ngOnInit() {
     this.objectiveNumber = this.ScavangerHunt.getObjectiveNumber() - 1;
     this.orientationHandler = (event: DeviceOrientationEvent) => {
-      if ((Math.abs(event.beta ?? 0) > 80 && Math.abs(event.beta ?? 0) < 100) && !this.isTaskDone) {
+      const beta = event.beta; // Rotation around the X-axis
+      const gamma = event.gamma; // Rotation around the Y-axis
+      if ((
+        (Math.abs(beta ?? 0) > 70 && Math.abs(beta ?? 0) < 110) ||
+        (Math.abs(gamma ?? 0) > 70 && Math.abs(gamma ?? 0) < 110)
+      ) && !this.isTaskDone) {
         this.ngZone.run(() => this.markTaskDone());
       }
     };
