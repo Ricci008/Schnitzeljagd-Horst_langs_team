@@ -49,8 +49,8 @@ export class SensorsPage implements OnInit, OnDestroy {
   }
 
   skipTask() {
-    this.ScavangerHunt.nextObjective(true);
     this.ScavangerHunt.endObjective();
+    this.ScavangerHunt.nextObjective(true);
   }
 
   markTaskDone() {

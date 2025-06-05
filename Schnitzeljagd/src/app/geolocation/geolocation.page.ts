@@ -92,8 +92,8 @@ export class GeolocationPage implements OnInit, OnDestroy {
   }
 
   skipTask() {
-    this.ScavangerHunt.nextObjective(true);
     this.ScavangerHunt.endObjective();
+    this.ScavangerHunt.nextObjective(true);
   }
 
   markTaskDone() {

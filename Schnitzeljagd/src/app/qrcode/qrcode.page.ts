@@ -45,8 +45,8 @@ export class QrcodePage implements OnInit {
   }
 
   skipTask() {
-    this.ScavangerHunt.nextObjective(true);
     this.ScavangerHunt.endObjective();
+    this.ScavangerHunt.nextObjective(true);
   }
 
   markTaskDone() {

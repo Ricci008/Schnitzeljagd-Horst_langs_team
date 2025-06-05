@@ -60,6 +60,7 @@ export class ScavangerHuntManagerService {
     const huntId = this.getCurrentHuntId();
 
     const hunt = this.DataService.getHuntById(huntId);
+
     if (hunt) {
       const lastTimestamp = hunt.timestamps[hunt.timestamps.length - 1];
       lastTimestamp.endTime = new Date().toISOString();
@@ -113,7 +114,7 @@ export class ScavangerHuntManagerService {
 
         const objectiveTime = (new Date(timestamp.endTime).getTime() - new Date(timestamp.startTime).getTime()) / 1000;
 
-        if (objectiveTime > 60)  {
+        if (objectiveTime > 45)  {
           hunt.reductions += 1;
         }
       }
