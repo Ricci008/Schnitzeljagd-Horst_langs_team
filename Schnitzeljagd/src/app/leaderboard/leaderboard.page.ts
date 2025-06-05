@@ -11,7 +11,6 @@ import {
   IonItem,
   IonCard,
 } from '@ionic/angular/standalone';
-import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { ScavangerHuntDataService } from '../services/scavanger-hunt-data.service';
 import { ScavengerHunt } from '../models/scavenger-hunt';
 import { DatePipe } from '@angular/common';
@@ -25,7 +24,6 @@ import { DatePipe } from '@angular/common';
     IonToolbar,
     IonTitle,
     IonContent,
-    ExploreContainerComponent,
     IonButton,
     IonList,
     IonLabel,

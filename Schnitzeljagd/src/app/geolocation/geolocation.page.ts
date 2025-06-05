@@ -1,13 +1,7 @@
 import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  IonContent,
-  IonFooter,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-} from '@ionic/angular/standalone';
+import { IonContent, IonFooter } from '@ionic/angular/standalone';
 import { Geolocation } from '@capacitor/geolocation';
 import { ObjectiveTitleComponent } from '../objective-title/objective-title.component';
 import { ObjectiveStateComponent } from '../objective-state/objective-state.component';
@@ -47,9 +41,6 @@ export function haversineDistance(
   standalone: true,
   imports: [
     IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
     CommonModule,
     FormsModule,
     ObjectiveTitleComponent,
