@@ -24,7 +24,7 @@
       <ion-card-title>Top Durchläufe</ion-card-title>
     </ion-card-header>
     <ion-list >
-      @for (hunt of topHunts; track hunt.id){
+      @for (hunt of topHunts| slice:0:3; track hunt.id){
       <ion-item>
         <ion-label>
          {{ hunt.playerName }} /
@@ -41,7 +41,7 @@
       <ion-card-title>Letzte Durchläufe</ion-card-title>
     </ion-card-header>
     <ion-list >
-      @for (hunt of recentHunts; track hunt.id){
+      @for (hunt of recentHunts| slice:0:3; track hunt.id){
         <ion-item>
           <ion-label>
             {{ hunt.playerName }} /
