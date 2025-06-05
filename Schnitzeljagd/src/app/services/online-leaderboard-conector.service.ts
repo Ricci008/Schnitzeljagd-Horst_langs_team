@@ -14,7 +14,7 @@ export class OnlineLeaderboardConectorService {
       `entry.1860183935=${playerName}` +
       `&entry.564282981=${points}` +
       `&entry.1079317865=${reductions}` +
-      `&entry.985590604=${Math.floor(time / 3600)}:${Math.floor((time % 3600) / 60)}:${Math.floor(time % 60)}`;
+      `&entry.985590604=${String(Math.floor(time / 3600)).padStart(2, '0')}:${String(Math.floor((time % 3600) / 60)).padStart(2, '0')}:${String(Math.floor(time % 60)).padStart(2, '0')}`;
 
     const options = {
       url: this.api_url,
