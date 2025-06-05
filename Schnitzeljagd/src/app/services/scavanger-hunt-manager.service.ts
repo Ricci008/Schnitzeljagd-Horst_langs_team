@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ScavangerHuntDataService } from './scavanger-hunt-data.service';
+import { OnlineLeaderboardConectorService } from "./online-leaderboard-conector.service";
 import { ScavengerHunt } from '../models/scavenger-hunt';
 import {Haptics, NotificationType} from '@capacitor/haptics';
 
@@ -18,7 +19,7 @@ export class ScavangerHuntManagerService {
     "wifi",
   ];
 
-  constructor(private DataService: ScavangerHuntDataService, private router: Router) {}
+  constructor(private DataService: ScavangerHuntDataService, private onlineLeaderbaord : OnlineLeaderboardConectorService, private router: Router) {}
 
   getCurrentHuntId(): number {
     const hunts = this.DataService.getHunts();
@@ -86,7 +87,6 @@ export class ScavangerHuntManagerService {
         hunt.points += 1;
         Haptics.notification({ type: NotificationType.Success });
       } else {
-        hunt.reductions += 1;
         Haptics.notification({ type: NotificationType.Warning });
       }
 
@@ -118,8 +118,11 @@ export class ScavangerHuntManagerService {
         }
       }
 
+      hunt.totalTime = (new Date(lastTimestamp.endTime).getTime() - new Date(hunt.timestamps[0].startTime).getTime()) / 1000;
+
       Haptics.notification({ type: NotificationType.Success });
       this.DataService.updateHunt(huntId, hunt);
+      this.onlineLeaderbaord.submitScore(hunt.playerName, hunt.points, hunt.reductions, hunt.totalTime);
       this.router.navigate(['/finished'])
     }
   }

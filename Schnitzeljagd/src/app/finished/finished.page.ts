@@ -33,7 +33,6 @@ export class FinishedPage implements OnInit {
     this.points = currentScavengerHunt?.points;
     this.skipedTasks = currentScavengerHunt?.reductions;
     this.usedTime = currentScavengerHunt?.totalTime;
-    console.log(currentScavengerHunt);
   }
 
   onExit() {
@@ -41,10 +40,10 @@ export class FinishedPage implements OnInit {
   }
 
   formatTime(seconds: number | undefined): string {
-    if (seconds === undefined) return '00:00';
+    if (seconds === undefined) return '00min 00sek';
     const m = Math.floor(seconds / 60);
     const s = Math.floor(seconds % 60);
-    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    return `${m.toString().padStart(2, '0')}min ${s.toString().padStart(2, '0')}sek`;
   }
 
 }
