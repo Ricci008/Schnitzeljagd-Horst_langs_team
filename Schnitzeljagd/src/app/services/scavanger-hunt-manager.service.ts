@@ -11,11 +11,11 @@ export class ScavangerHuntManagerService {
 
   objectiveRoutes = [
     "geolocation",
+    "distance",
     "qrcode",
     "sensors",
     "charger",
     "wifi",
-    "distance"
   ];
 
   constructor(private DataService: ScavangerHuntDataService, private router: Router) {}
