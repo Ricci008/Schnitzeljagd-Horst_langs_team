@@ -25,13 +25,19 @@
     </ion-card>
   </ion-header>
   <ion-list>
-    @for (hunt of filteredHunts; track hunt.id) {
-    <ion-item>
-      <ion-label>
-        {{ hunt.playerName }} / {{hunt.date | date: 'dd.MM.yyyy'}} /
-        {{hunt.points}} Punkte
-      </ion-label>
-    </ion-item>
+    @if(filteredHunts > 0) {
+      @for (hunt of filteredHunts; track hunt.id) {
+        <ion-item>
+          <ion-label>
+            {{ hunt.playerName }} / {{hunt.date | date: 'dd.MM.yyyy'}} /
+            {{hunt.points}} Punkte
+          </ion-label>
+        </ion-item>
+      }
+    } @else {
+      <ion-item>
+        <ion-label>Keine Durchläufe vorhanden.</ion-label>
+      </ion-item>
     }
   </ion-list>
 </ion-content>
